@@ -68,7 +68,6 @@ class App extends Component {
       <Tabs value={value} onChange={this.handleChange}>
         <Tab label="Home" href="/"/>
         <Tab label="Dinners"/>
-        <Tab label="Application"/>
         <Tab label="Mission"/>
         <Tab label="Our Team"/>
         <Tab label="Contact Us"/>
@@ -78,12 +77,11 @@ class App extends Component {
     </AppBar>
       {value === 0 && <TabContainer></TabContainer>}
       {value === 1 && <TabContainer><Dinners/></TabContainer>}
-      {value === 2 && <TabContainer><Application/></TabContainer>}
-      {value === 3 && <TabContainer><Mission/></TabContainer>}
-      {value === 4 && <TabContainer><Team/></TabContainer>}
-      {value === 5 && <TabContainer><Contact/></TabContainer>}
-      {value === 6 && <TabContainer><Faq/></TabContainer>}
-      {value === 7 && <TabContainer><Topics/></TabContainer>}
+      {value === 2 && <TabContainer><Mission/></TabContainer>}
+      {value === 3 && <TabContainer><Team/></TabContainer>}
+      {value === 4 && <TabContainer><Contact/></TabContainer>}
+      {value === 5 && <TabContainer><Faq/></TabContainer>}
+      {value === 6 && <TabContainer><Topics/></TabContainer>}
     </div>
   </Router>
   );
