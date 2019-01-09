@@ -32,7 +32,8 @@ class Dinners extends React.Component {
       // the data is returned as students
       dinners => {
         console.log(dinners)
-        this.setState({dinners: dinners, value: -1});
+        this.setState({dinners: dinners, dinnerID: -1});
+
       },
       // an error is returned
       error => {
@@ -42,11 +43,11 @@ class Dinners extends React.Component {
   }
 
   handleClickOpen = idx => event => {
-    this.setState({ value: idx });
+    this.setState({ dinnerID: idx });
   };
 
   handleClose() {
-    this.setState({ value: -1 });
+    this.setState({ dinnerID: -1 });
   };
 
   handleChange = name => event => {
@@ -71,6 +72,23 @@ class Dinners extends React.Component {
       // success callback
       student => {
         console.log(student);
+
+        console.log(this.state.interest);
+        console.log(this.state.netID);
+        console.log(this.state.dinnerID)
+
+        // create new dinner application
+        axios.post('https://dukeconvo.herokuapp.com/application/register', {
+          interest: this.state.interest,
+          studentID: this.state.netID,
+          dinnerID: this.state.dinnerID
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       },
       // an error is returned
       error => {
@@ -82,7 +100,7 @@ class Dinners extends React.Component {
 
   render() {
 
-    const value = this.state.value;
+    const value = this.state.dinnerID;
 
     return (
       <div style={{marginTop: 50, marginLeft: 100, marginRight: 100}}>
@@ -116,13 +134,13 @@ class Dinners extends React.Component {
                       </ExpansionPanel>
                       <Typography>{dinner.timeStamp}</Typography>
 
-                      <Button onClick={this.handleClickOpen(idx)}>Apply</Button>
+                      <Button onClick={this.handleClickOpen(dinner.id)}>Apply</Button>
                       <Dialog
-                        open={value == idx}
+                        open={value == dinner.id}
                         onClose={this.handleClose}
                         aria-labelledby={idx}
                       >
-                        <DialogTitle id={idx}>Application for {dinner.topic}</DialogTitle>
+                        <DialogTitle id={dinner.id}>Application for {dinner.topic}</DialogTitle>
                         <DialogContent>
                           <TextField
                             autoFocus
