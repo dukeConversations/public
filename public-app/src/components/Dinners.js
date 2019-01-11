@@ -72,7 +72,6 @@ class Dinners extends React.Component {
       // success callback
       student => {
         console.log(student);
-
         console.log(this.state.interest);
         console.log(this.state.netID);
         console.log(this.state.dinnerID)
@@ -137,6 +136,7 @@ class Dinners extends React.Component {
                       <Button onClick={this.handleClickOpen(dinner.id)}>Apply</Button>
                       <Dialog
                         open={value == dinner.id}
+                        scroll="paper"
                         onClose={this.handleClose}
                         aria-labelledby={idx}
                       >
@@ -151,7 +151,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('firstName')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="lastName"
                             label="Last Name"
@@ -159,7 +158,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('lastName')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="netID"
                             label="NetID"
@@ -167,7 +165,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('netID')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="uniqueID"
                             label="UniqueID"
@@ -175,7 +172,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('uniqueID')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="major"
                             label="Major"
@@ -183,7 +179,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('major')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="phoneNumber"
                             label="Phone Number"
@@ -192,7 +187,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('phoneNumber')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="graduationYear"
                             label="Graduation Year"
@@ -201,7 +195,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('graduationYear')}
                           />
                           <TextField
-                            autoFocus
                             margin="dense"
                             id="genderPronouns"
                             label="Gender Pronouns"
@@ -209,7 +202,6 @@ class Dinners extends React.Component {
                             onChange={this.handleChange('genderPronouns')}
                           />
                           <TextField
-                            autoFocus
                             multiline
                             margin="dense"
                             id="interest"
