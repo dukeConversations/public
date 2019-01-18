@@ -37,10 +37,6 @@ function TabContainer(props) {
   );
 }
 
-// TabContainer.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
-
 
 class App extends Component {
 
@@ -63,7 +59,7 @@ class App extends Component {
   return (
    <Router>
     <div style={{position: 'fixed', overflow: 'scroll', height: '100%', width: '100%', margin: '0 auto'}}>
-    <AppBar position="fixed">
+    <AppBar position="fixed" style={{backgroundColor: '#001A57', color: '#0c9bf9'}}>
       <Tabs value={value} onChange={this.handleChange}>
         <Tab label="Home" href="/"/>
         <Tab label="Dinners"/>
@@ -86,9 +82,5 @@ class App extends Component {
   );
  }
 }
-
-// App.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

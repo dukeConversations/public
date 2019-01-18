@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import api from 'duke-convos-api'
 import axios from 'axios';
 
-import {majorsDict, genderPronouns} from '../dictionaries.js';
+import {majorsDict, genderPronouns, gradYears} from '../dictionaries.js';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -18,11 +18,28 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
+import MaskedInput from 'react-text-mask';
+
+
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={'\u2000'}
+      showMask
+    />
+  );
+}
 
 class Dinners extends React.Component {
 
@@ -39,7 +56,7 @@ class Dinners extends React.Component {
 
       dinners => {
         console.log(dinners)
-        this.setState({dinners: [{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}}], dinnerID: -1});
+        this.setState({dinners: [{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}}], dinnerID: -1,});
       },
       // an error is returned
       error => {
@@ -57,12 +74,27 @@ class Dinners extends React.Component {
   };
 
   handleChange = name => event => {
+
+    var errorVar = "error" + name;
+
+    if (event.target.value.trim() === '') {
+      this.setState({
+        [errorVar]: true,
+      });
+    }
+    else {
+      this.setState({
+        [errorVar]: false,
+      });
+    }
+
     this.setState({
       [name]: event.target.value,
     });
   };
 
   handleSubmit() {
+
     api.updateStudent(
       this.state.netID,
       {
@@ -103,18 +135,18 @@ class Dinners extends React.Component {
     this.setState({ dinnerID: -1 });
   }
 
-
   render() {
 
     const value = this.state.dinnerID;
     const majors = Object.values(majorsDict());
     const genders = Object.values(genderPronouns());
+    const graduationYears = gradYears();
 
     if (this.state.dinners.length == 0) {
       return (
         <div style={{marginTop: 50, marginLeft: 100, marginRight: 100, textAlign: 'center'}}>
           <h2 style={{textAlign: 'left'}}>Dinners</h2>
-        <CircularProgress style={{margin: '0 auto'}}/>
+        <CircularProgress />
         </div>
       )
     }
@@ -166,6 +198,8 @@ class Dinners extends React.Component {
                             id="firstName"
                             label="First Name"
                             fullWidth
+                            required
+                            error={this.state.errorfirstName}
                             onChange={this.handleChange('firstName')}
                           />
                           <TextField
@@ -173,6 +207,8 @@ class Dinners extends React.Component {
                             id="lastName"
                             label="Last Name"
                             fullWidth
+                            required
+                            error={this.state.errorlastName}
                             onChange={this.handleChange('lastName')}
                           />
                           <TextField
@@ -180,6 +216,8 @@ class Dinners extends React.Component {
                             id="netID"
                             label="NetID"
                             fullWidth
+                            required
+                            error={this.state.errornetID}
                             onChange={this.handleChange('netID')}
                           />
                           <TextField
@@ -187,66 +225,81 @@ class Dinners extends React.Component {
                             id="uniqueID"
                             label="UniqueID"
                             fullWidth
+                            required
+                            error={this.state.erroruniqueID}
                             onChange={this.handleChange('uniqueID')}
                           />
-                          <FormControl>
-                          <InputLabel htmlFor="major">Major</InputLabel>
-                          <Select
-                            value={this.state.major}
+
+                          <TextField
+                            id="major"
+                            select
+                            label="Major"
+                            style={{width: 200}}
                             onChange={this.handleChange('major')}
-                            inputProps={{
-                              name: 'major',
-                              id: 'major',
-                            }}
+                            required
+                            error={this.state.errormajor}
+                            margin="dense"
                           >
-                            <MenuItem value="0">
-                              <em>None</em>
-                            </MenuItem>
-                            {majors.map(function(major,idx) {
-                            if (idx > 0) return (<MenuItem value={idx}>{major}</MenuItem>) })}
-                          </Select>
-                          </FormControl>
+                          <MenuItem value="0">
+                            <em>None</em>
+                          </MenuItem>
+                          {majors.map(function(major,idx) {
+                          if (idx > 0) return (<MenuItem value={idx}>{major}</MenuItem>) })}
+                          </TextField>
+
                           <TextField
                             margin="dense"
                             id="phoneNumber"
                             label="Phone Number"
-                            type="number"
                             fullWidth
                             onChange={this.handleChange('phoneNumber')}
-                          />
-                          <TextField
-                            margin="dense"
-                            id="graduationYear"
-                            label="Graduation Year"
-                            type="number"
-                            fullWidth
-                            onChange={this.handleChange('graduationYear')}
-                          />
-
-                          <FormControl>
-                          <InputLabel htmlFor="genderPronouns">Gender Pronouns</InputLabel>
-                          <Select
-                            value={this.state.genderPronouns}
-                            onChange={this.handleChange('genderPronouns')}
-
-                            inputProps={{
-                              name: 'genderPronouns',
-                              id: 'genderPronouns',
+                            InputProps={{
+                              inputComponent: TextMaskCustom,
                             }}
+                          />
+
+                          <TextField
+                            id="graduationYear"
+                            select
+                            label="Graduation Year"
+                            style={{width: 200}}
+                            onChange={this.handleChange('graduationYear')}
+                            required
+                            error={this.state.errorgraduationYear}
+                            margin="dense"
                           >
-                            <MenuItem value="0">
-                              <em>None</em>
-                            </MenuItem>
-                            {genders.map(function(gp,idx) {
-                            if (idx > 0) return (<MenuItem value={idx}>{gp}</MenuItem>) })}
-                          </Select>
-                          </FormControl>
+                          <MenuItem value="0">
+                            <em>None</em>
+                          </MenuItem>
+                          {graduationYears.map(function(gy,idx) {
+                          if (idx > 0) return (<MenuItem value={idx}>{gy}</MenuItem>) })}
+                          </TextField>
+                          <div>
+                          <TextField
+                            id="genderPronouns"
+                            select
+                            label="Gender Pronouns"
+                            style={{width: 200}}
+                            onChange={this.handleChange('genderPronouns')}
+                            required
+                            error={this.state.errorgenderPronouns}
+                            margin="dense"
+                          >
+                          <MenuItem value="0">
+                            <em>None</em>
+                          </MenuItem>
+                          {genders.map(function(gp,idx) {
+                          if (idx > 0) return (<MenuItem value={gp}>{gp}</MenuItem>) })}
+                          </TextField>
+                          </div>
                           <TextField
                             multiline
                             margin="dense"
                             id="interest"
                             label="Why do you want to attend this dinner?"
                             fullWidth
+                            required
+                            error={this.state.errorinterest}
                             onChange={this.handleChange('interest')}
                           />
                         </DialogContent>
