@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import api from 'duke-convos-api'
 import axios from 'axios';
 
+import {majorsDict, genderPronouns} from '../dictionaries.js';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +18,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Dinners extends React.Component {
 
@@ -29,11 +36,10 @@ class Dinners extends React.Component {
 
   componentDidMount() {
     api.getDinners(
-      // the data is returned as students
+
       dinners => {
         console.log(dinners)
-        this.setState({dinners: dinners, dinnerID: -1});
-
+        this.setState({dinners: [{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}}], dinnerID: -1});
       },
       // an error is returned
       error => {
@@ -94,20 +100,33 @@ class Dinners extends React.Component {
         console.error(error);
       }
     )
+    this.setState({ dinnerID: -1 });
   }
 
 
   render() {
 
     const value = this.state.dinnerID;
+    const majors = Object.values(majorsDict());
+    const genders = Object.values(genderPronouns());
+
+    if (this.state.dinners.length == 0) {
+      return (
+        <div style={{marginTop: 50, marginLeft: 100, marginRight: 100, textAlign: 'center'}}>
+          <h2 style={{textAlign: 'left'}}>Dinners</h2>
+        <CircularProgress style={{margin: '0 auto'}}/>
+        </div>
+      )
+    }
 
     return (
       <div style={{marginTop: 50, marginLeft: 100, marginRight: 100}}>
         <h2>Dinners</h2>
+
         {this.state.dinners.map(function(dinner, idx){
 
             return (
-              <Paper style={{width: 600, margin: '0 auto', marginTop: 10, padding: 25}}>
+              <Paper style={{width: 800, margin: '0 auto', marginTop: 10, padding: 25}}>
                 <Grid container spacing={16}>
                 <Grid item xs={4}>
                   <Typography>-- Picture --</Typography>
@@ -120,7 +139,6 @@ class Dinners extends React.Component {
                       <Typography gutterBottom variant="subheading">
                         {dinner.topic}
                       </Typography>
-                      <Typography color="textSecondary">{dinner.address}</Typography>
                       <ExpansionPanel>
                         <ExpansionPanelSummary style={{paddingLeft: 8}} expandIcon={<ExpandMoreIcon />}>
                           <Typography variant="heading">Description</Typography>
@@ -171,13 +189,23 @@ class Dinners extends React.Component {
                             fullWidth
                             onChange={this.handleChange('uniqueID')}
                           />
-                          <TextField
-                            margin="dense"
-                            id="major"
-                            label="Major"
-                            fullWidth
+                          <FormControl>
+                          <InputLabel htmlFor="major">Major</InputLabel>
+                          <Select
+                            value={this.state.major}
                             onChange={this.handleChange('major')}
-                          />
+                            inputProps={{
+                              name: 'major',
+                              id: 'major',
+                            }}
+                          >
+                            <MenuItem value="0">
+                              <em>None</em>
+                            </MenuItem>
+                            {majors.map(function(major,idx) {
+                            if (idx > 0) return (<MenuItem value={idx}>{major}</MenuItem>) })}
+                          </Select>
+                          </FormControl>
                           <TextField
                             margin="dense"
                             id="phoneNumber"
@@ -194,13 +222,25 @@ class Dinners extends React.Component {
                             fullWidth
                             onChange={this.handleChange('graduationYear')}
                           />
-                          <TextField
-                            margin="dense"
-                            id="genderPronouns"
-                            label="Gender Pronouns"
-                            fullWidth
+
+                          <FormControl>
+                          <InputLabel htmlFor="genderPronouns">Gender Pronouns</InputLabel>
+                          <Select
+                            value={this.state.genderPronouns}
                             onChange={this.handleChange('genderPronouns')}
-                          />
+
+                            inputProps={{
+                              name: 'genderPronouns',
+                              id: 'genderPronouns',
+                            }}
+                          >
+                            <MenuItem value="0">
+                              <em>None</em>
+                            </MenuItem>
+                            {genders.map(function(gp,idx) {
+                            if (idx > 0) return (<MenuItem value={idx}>{gp}</MenuItem>) })}
+                          </Select>
+                          </FormControl>
                           <TextField
                             multiline
                             margin="dense"

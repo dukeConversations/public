@@ -16,7 +16,6 @@ import { simpleAction } from '../actions/simpleAction';
 import Home from './Home.js';
 import Dinners from './Dinners.js';
 import Mission from './Mission.js';
-import Application from './Application.js';
 import Team from './Team.js';
 import Contact from './Contact.js';
 import Faq from './Faq.js';
