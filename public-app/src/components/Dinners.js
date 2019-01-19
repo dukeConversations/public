@@ -19,36 +19,24 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MaskedInput from 'react-text-mask';
-
-
 import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      ref={ref => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
-      showMask
-    />
-  );
-}
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 class Dinners extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {dinners: [], value: -1};
+    this.state = {dinners: [], value: -1, appSuccess: false};
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkUndefined = this.checkUndefined.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +44,7 @@ class Dinners extends React.Component {
 
       dinners => {
         console.log(dinners)
-        this.setState({dinners: [{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}}], dinnerID: -1,});
+        this.setState({dinners: [{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}},{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}},{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}},{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}},{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}},{"topic": "Topic", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}}], dinnerID: -1, appSuccess: false});
       },
       // an error is returned
       error => {
@@ -70,14 +58,27 @@ class Dinners extends React.Component {
   };
 
   handleClose() {
-    this.setState({ dinnerID: -1 });
+    this.setState({ dinnerID: -1, appSuccess: false});
   };
+
+  checkUndefined(target, name) {
+
+    var errorVar = "error" + name;
+
+    if (typeof(target) == "undefined") {
+      this.setState({
+        [errorVar]: true,
+      });
+      return true;
+    }
+    else return false;
+  }
 
   handleChange = name => event => {
 
     var errorVar = "error" + name;
 
-    if (event.target.value.trim() === '') {
+    if (event.target.value.toString().trim() === '') {
       this.setState({
         [errorVar]: true,
       });
@@ -95,44 +96,55 @@ class Dinners extends React.Component {
 
   handleSubmit() {
 
-    api.updateStudent(
-      this.state.netID,
-      {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        uniqueID: this.state.uniqueID,
-        netID: this.state.netID,
-        major: this.state.major,
-        phoneNumber: this.state.phoneNumber,
-        graduationYear: this.state.graduationYear,
-        genderPronouns: this.state.genderPronouns
-      },
-      // success callback
-      student => {
-        console.log(student);
-        console.log(this.state.interest);
-        console.log(this.state.netID);
-        console.log(this.state.dinnerID)
+    if (! (this.checkUndefined(this.state.firstName, 'firstName')
+    || this.checkUndefined(this.state.lastName, 'lastName')
+    || this.checkUndefined(this.state.netID, 'netID')
+    || this.checkUndefined(this.state.uniqueID, 'uniqueID')
+    || this.checkUndefined(this.state.major, 'major')
+    || this.checkUndefined(this.state.graduationYear, 'graduationYear')
+    || this.checkUndefined(this.state.genderPronouns, 'genderPronouns')
+    || this.checkUndefined(this.state.interest, 'interest')  )) {
 
-        // create new dinner application
-        axios.post('https://dukeconvo.herokuapp.com/application/register', {
-          interest: this.state.interest,
-          studentID: this.state.netID,
-          dinnerID: this.state.dinnerID
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      },
-      // an error is returned
-      error => {
-        console.error(error);
-      }
-    )
-    this.setState({ dinnerID: -1 });
+      api.updateStudent(
+        this.state.netID,
+        {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          uniqueID: this.state.uniqueID,
+          netID: this.state.netID,
+          major: this.state.major,
+          phoneNumber: this.state.phoneNumber,
+          graduationYear: this.state.graduationYear,
+          genderPronouns: this.state.genderPronouns
+        },
+        // success callback
+        student => {
+          console.log(student);
+          console.log(this.state.interest);
+          console.log(this.state.netID);
+          console.log(this.state.dinnerID)
+
+          // create new dinner application
+          axios.post('https://dukeconvo.herokuapp.com/application/register', {
+            interest: this.state.interest,
+            studentID: this.state.netID,
+            dinnerID: this.state.dinnerID
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        },
+        // an error is returned
+        error => {
+          console.error(error);
+        }
+      )
+      this.setState({ dinnerID: -1, appSuccess: true});
+    }
+
   }
 
   render() {
@@ -152,13 +164,38 @@ class Dinners extends React.Component {
     }
 
     return (
-      <div style={{marginTop: 50, marginLeft: 100, marginRight: 100}}>
-        <h2>Dinners</h2>
+      <div style={{marginTop: 50}}>
+        <h2 style={{textAlign: 'center'}}>Dinners</h2>
+
+        <Snackbar
+        style={{backgroundColor: 'green'}}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.appSuccess}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">Application submitted!</span>}
+          action={[
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
 
         {this.state.dinners.map(function(dinner, idx){
 
             return (
-              <Paper style={{width: 800, margin: '0 auto', marginTop: 10, padding: 25}}>
+              <Paper style={{width: '85%', margin: '0 auto', marginTop: 10, padding: 25}}>
                 <Grid container spacing={16}>
                 <Grid item xs={4}>
                   <Typography>-- Picture --</Typography>
@@ -189,6 +226,8 @@ class Dinners extends React.Component {
                         scroll="paper"
                         onClose={this.handleClose}
                         aria-labelledby={idx}
+                        fullWidth={true}
+                        maxWidth={'md'}
                       >
                         <DialogTitle id={dinner.id}>Application for {dinner.topic}</DialogTitle>
                         <DialogContent>
@@ -235,6 +274,7 @@ class Dinners extends React.Component {
                             select
                             label="Major"
                             style={{width: 200}}
+                            value={this.state.major}
                             onChange={this.handleChange('major')}
                             required
                             error={this.state.errormajor}
@@ -253,9 +293,7 @@ class Dinners extends React.Component {
                             label="Phone Number"
                             fullWidth
                             onChange={this.handleChange('phoneNumber')}
-                            InputProps={{
-                              inputComponent: TextMaskCustom,
-                            }}
+                            type="number"
                           />
 
                           <TextField
@@ -265,6 +303,7 @@ class Dinners extends React.Component {
                             style={{width: 200}}
                             onChange={this.handleChange('graduationYear')}
                             required
+                            value={this.state.graduationYear}
                             error={this.state.errorgraduationYear}
                             margin="dense"
                           >
@@ -282,6 +321,7 @@ class Dinners extends React.Component {
                             style={{width: 200}}
                             onChange={this.handleChange('genderPronouns')}
                             required
+                            value={this.state.genderPronouns}
                             error={this.state.errorgenderPronouns}
                             margin="dense"
                           >

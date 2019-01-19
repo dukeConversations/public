@@ -8,6 +8,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+
+import Drawer from './Drawer.js'
 
 import '../App.css';
 
@@ -37,6 +40,9 @@ function TabContainer(props) {
   );
 }
 
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
 
 class App extends Component {
 
@@ -56,9 +62,15 @@ class App extends Component {
 
   const { value } = this.state;
 
-  return (
+  console.log(isMobileDevice());
+
+  if (isMobileDevice()) {
+    return (<Drawer/>)
+  }
+
+  else return (
    <Router>
-    <div style={{position: 'fixed', overflow: 'scroll', height: '100%', width: '100%', margin: '0 auto'}}>
+    <div style={{height: '100%', width: '100%', margin: '0 auto'}}>
     <AppBar position="fixed" style={{backgroundColor: '#001A57', color: '#0c9bf9'}}>
       <Tabs value={value} onChange={this.handleChange}>
         <Tab label="Home" href="/"/>
@@ -78,6 +90,7 @@ class App extends Component {
       {value === 5 && <TabContainer><Faq/></TabContainer>}
       {value === 6 && <TabContainer><Topics/></TabContainer>}
     </div>
+
   </Router>
   );
  }
