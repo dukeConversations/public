@@ -44,6 +44,16 @@ const styles = theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 250,
+  },
+  interestField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: '97%'
+  },
   actions: {
     display: 'flex',
   },
@@ -177,8 +187,6 @@ class DinnerCard extends React.Component {
     const genders = Object.values(genderPronouns());
     const graduationYears = gradYears();
 
-    console.log('value is' + this.props.hello)
-
     return (
       <div>
 
@@ -259,11 +267,11 @@ class DinnerCard extends React.Component {
 
       <Dialog
         open={value === this.props.id}
-        scroll="paper"
+        scroll="body"
         onClose={this.handleClose}
         aria-labelledby={this.props.id}
         fullWidth={true}
-        maxWidth={'md'}
+        maxWidth={'sm'}
       >
         <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>
         <DialogContent>
@@ -272,7 +280,7 @@ class DinnerCard extends React.Component {
             margin="dense"
             id="firstName"
             label="First Name"
-            fullWidth
+            className={classes.textField}
             required
             error={this.state.errorfirstName}
             onChange={this.handleChange('firstName')}
@@ -281,7 +289,7 @@ class DinnerCard extends React.Component {
             margin="dense"
             id="lastName"
             label="Last Name"
-            fullWidth
+            className={classes.textField}
             required
             error={this.state.errorlastName}
             onChange={this.handleChange('lastName')}
@@ -290,7 +298,7 @@ class DinnerCard extends React.Component {
             margin="dense"
             id="netID"
             label="NetID"
-            fullWidth
+            className={classes.textField}
             required
             error={this.state.errornetID}
             onChange={this.handleChange('netID')}
@@ -299,7 +307,7 @@ class DinnerCard extends React.Component {
             margin="dense"
             id="uniqueID"
             label="UniqueID"
-            fullWidth
+            className={classes.textField}
             required
             error={this.state.erroruniqueID}
             onChange={this.handleChange('uniqueID')}
@@ -309,7 +317,7 @@ class DinnerCard extends React.Component {
             id="major"
             select
             label="Major"
-            style={{width: 200}}
+            className={classes.textField}
             value={this.state.major}
             onChange={this.handleChange('major')}
             required
@@ -320,14 +328,14 @@ class DinnerCard extends React.Component {
             <em>None</em>
           </MenuItem>
           {majors.map(function(major,idx) {
-          if (idx > 0) return (<MenuItem value={idx}>{major}</MenuItem>) })}
+          if (idx > 0) return (<MenuItem key={idx} value={idx}>{major}</MenuItem>) })}
           </TextField>
 
           <TextField
             margin="dense"
             id="phoneNumber"
             label="Phone Number"
-            fullWidth
+            className={classes.textField}
             onChange={this.handleChange('phoneNumber')}
             type="number"
           />
@@ -336,7 +344,7 @@ class DinnerCard extends React.Component {
             id="graduationYear"
             select
             label="Graduation Year"
-            style={{width: 200}}
+            className={classes.textField}
             onChange={this.handleChange('graduationYear')}
             required
             value={this.state.graduationYear}
@@ -347,14 +355,14 @@ class DinnerCard extends React.Component {
             <em>None</em>
           </MenuItem>
           {graduationYears.map(function(gy,idx) {
-          if (idx > 0) return (<MenuItem value={idx}>{gy}</MenuItem>) })}
+          if (idx > 0) return (<MenuItem key={idx} value={idx}>{gy}</MenuItem>) })}
           </TextField>
-          <div>
+
           <TextField
             id="genderPronouns"
             select
             label="Gender Pronouns"
-            style={{width: 200}}
+            className={classes.textField}
             onChange={this.handleChange('genderPronouns')}
             required
             value={this.state.genderPronouns}
@@ -365,15 +373,17 @@ class DinnerCard extends React.Component {
             <em>None</em>
           </MenuItem>
           {genders.map(function(gp,idx) {
-          if (idx > 0) return (<MenuItem value={gp}>{gp}</MenuItem>) })}
+          if (idx > 0) return (<MenuItem key={idx} value={idx}>{gp}</MenuItem>) })}
           </TextField>
-          </div>
+
           <TextField
             multiline
+            variant="outlined"
             margin="dense"
             id="interest"
             label="Why do you want to attend this dinner?"
-            fullWidth
+            className={classes.interestField}
+
             required
             error={this.state.errorinterest}
             onChange={this.handleChange('interest')}
