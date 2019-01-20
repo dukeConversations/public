@@ -168,13 +168,13 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          {this.state.value === 0 && <Home/>}
-          {this.state.value === 1 && <Dinners/>}
-          {this.state.value === 2 && <Mission/>}
-          {this.state.value === 3 && <Team/>}
-          {this.state.value === 4 && <Contact/>}
-          {this.state.value === 5 && <Faq/>}
-          {this.state.value === 6 && <Topics/>}
+          {this.state.value === 0 && <Home marginTop={''}/>}
+          {this.state.value === 1 && <Dinners marginTop={''}/>}
+          {this.state.value === 2 && <Mission marginTop={''}/>}
+          {this.state.value === 3 && <Team marginTop={''}/>}
+          {this.state.value === 4 && <Contact marginTop={''}/>}
+          {this.state.value === 5 && <Faq marginTop={''}/>}
+          {this.state.value === 6 && <Topics marginTop={''}/>}
         </main>
       </div>
     );

@@ -29,21 +29,18 @@ class Dinners extends React.Component {
 
     if (this.state.dinners.length === 0) {
       return (
-        <div style={{textAlign: 'center'}}>
-          <h2 style={{textAlign: 'center'}}>Upcoming dinners</h2>
+        <div style={{textAlign: 'center', marginTop: this.props.marginTop}}>
+          <h2>Upcoming dinners</h2>
         <CircularProgress />
         </div>
       )
     }
 
     return (
-      <div style={{marginTop: 50}}>
+      <div style={{marginTop: this.props.marginTop}}>
         <h2 style={{textAlign: 'center'}}>Upcoming dinners</h2>
-
         {this.state.dinners.map(function(dinner, idx){
-
             return (
-
               <div style={{maxWidth: 800, margin: '0 auto'}}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
@@ -51,7 +48,7 @@ class Dinners extends React.Component {
                   id={idx}
                   firstName={dinner.professor.firstName}
                   lastName={dinner.professor.lastName}
-                  title={dinner.title}
+                  title={dinner.professor.title}
                   picture={'http://i.imgur.com/w5rkSIj.jpg'}
                   topic={dinner.topic}
                   description={dinner.description}

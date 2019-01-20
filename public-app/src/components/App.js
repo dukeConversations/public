@@ -80,12 +80,12 @@ class App extends Component {
       </Tabs>
     </AppBar>
       {value === 0 && <TabContainer></TabContainer>}
-      {value === 1 && <TabContainer><Dinners/></TabContainer>}
-      {value === 2 && <TabContainer><Mission/></TabContainer>}
-      {value === 3 && <TabContainer><Team/></TabContainer>}
-      {value === 4 && <TabContainer><Contact/></TabContainer>}
-      {value === 5 && <TabContainer><Faq/></TabContainer>}
-      {value === 6 && <TabContainer><Topics/></TabContainer>}
+      {value === 1 && <TabContainer><Dinners marginTop={50}/></TabContainer>}
+      {value === 2 && <TabContainer><Mission marginTop={50}/></TabContainer>}
+      {value === 3 && <TabContainer><Team marginTop={50}/></TabContainer>}
+      {value === 4 && <TabContainer><Contact marginTop={50}/></TabContainer>}
+      {value === 5 && <TabContainer><Faq marginTop={50}/></TabContainer>}
+      {value === 6 && <TabContainer><Topics marginTop={50}/></TabContainer>}
     </div>
 
   </Router>
