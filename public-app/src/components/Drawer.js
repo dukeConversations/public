@@ -14,10 +14,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import Home from './Home.js';
 import Dinners from './Dinners.js';
@@ -27,7 +25,7 @@ import Contact from './Contact.js';
 import Faq from './Faq.js';
 import Topics from './Topics.js';
 
-const drawerWidth = 240;
+const drawerWidth = 120;
 
 const styles = theme => ({
   root: {
@@ -112,7 +110,7 @@ class PersistentDrawerLeft extends React.Component {
   render() {
     const { classes, theme } = this.props;
 
-    const menu = ['Home', 'Dinners', 'Mission', 'Team', 'Contract', 'FAQ', 'Topics'];
+    const menu = ['Home', 'Dinners', 'Mission', 'Team', 'Contact', 'FAQ', 'Topics'];
 
     return (
       <div className={classes.root}>
@@ -157,8 +155,8 @@ class PersistentDrawerLeft extends React.Component {
           <List>
 
             {menu.map((text, index) => (
-              <ListItem selected={this.state.value == index} button key={text} onClick={this.handleChange(index)}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItem selected={this.state.value === index} button key={text} onClick={this.handleChange(index)}>
+
                 <ListItemText primary={text} />
               </ListItem>
             ))}
