@@ -69,7 +69,7 @@ class App extends Component {
    <Router>
     <div style={{height: '100%', width: '100%', margin: '0 auto'}}>
     <AppBar position="fixed" style={{backgroundColor: '#001A57', color: '#0c9bf9'}}>
-      <Tabs value={value} onChange={this.handleChange}>
+      <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
         <Tab label="Home" href="/"/>
         <Tab label="Dinners"/>
         <Tab label="Mission"/>
