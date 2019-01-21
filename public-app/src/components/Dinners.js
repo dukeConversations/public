@@ -13,10 +13,9 @@ class Dinners extends React.Component {
 
   componentDidMount() {
     api.getDinners(
-
       dinners => {
         console.log(dinners);
-        this.setState({dinners: [{"topic": "Topic 1", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}},{"topic": "Topic 2", "timeStamp": "timeStamp", "description": "blah", "professor": {"firstName": "Alethea", "lastName": "Toh", "title": "Professor"}}], dinnerID: -1});
+        this.setState({dinners: dinners});
       },
       // an error is returned
       error => {
@@ -40,19 +39,25 @@ class Dinners extends React.Component {
       <div style={{marginTop: this.props.marginTop}}>
         <h2 style={{textAlign: 'center'}}>Upcoming dinners</h2>
         {this.state.dinners.map(function(dinner, idx){
+
+          var timestamp = new Date(dinner.timeStamp);
+
+          var date = String(timestamp.getDay()) + ", " + timestamp.getDate() + " " + timestamp.getMonth() + " " + timestamp.getYear();
+
+
             return (
               <div style={{maxWidth: 800, margin: '0 auto'}}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
                   <Card
-                  id={idx}
+                  id={dinner.id}
                   firstName={dinner.professor.firstName}
                   lastName={dinner.professor.lastName}
                   title={dinner.professor.title}
                   picture={'http://i.imgur.com/w5rkSIj.jpg'}
                   topic={dinner.topic}
                   description={dinner.description}
-                  timeStamp={dinner.timeStamp}/>
+                  timeStamp={date}/>
                 </Grid>
               </Grid>
               </div>

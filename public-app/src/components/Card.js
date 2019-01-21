@@ -40,6 +40,13 @@ const styles = theme => ({
   card: {
     maxWidth: 800,
   },
+  title: {
+    fontSize: '1.5em'
+  },
+  subheader: {
+    fontWeight: 'bold',
+    fontSize: '1.3em'
+  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -79,9 +86,8 @@ class DinnerCard extends React.Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkUndefined = this.checkUndefined.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
   }
-
-
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -94,6 +100,23 @@ class DinnerCard extends React.Component {
   handleClose() {
     this.setState({ dinnerID: -1, appSuccess: false});
   };
+
+  formSubmit(interest, netID, dinnerID) {
+      // create new dinner application
+      axios.post('https://dukeconvo.herokuapp.com/application/register', {
+        interest: interest,
+        studentID: netID,
+        dinnerID: dinnerID
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      this.setState({ dinnerID: -1, appSuccess: true});
+  }
 
   checkUndefined(target, name) {
 
@@ -137,7 +160,7 @@ class DinnerCard extends React.Component {
     || this.checkUndefined(this.state.major, 'major')
     || this.checkUndefined(this.state.graduationYear, 'graduationYear')
     || this.checkUndefined(this.state.genderPronouns, 'genderPronouns')
-    || this.checkUndefined(this.state.interest, 'interest')  )) {
+    || this.checkUndefined(this.state.interest, 'interest')) ) {
 
       api.updateStudent(
         this.state.netID,
@@ -156,27 +179,16 @@ class DinnerCard extends React.Component {
           console.log(student);
           console.log(this.state.interest);
           console.log(this.state.netID);
-          console.log(this.state.dinnerID)
+          console.log("dinner id is " + this.state.dinnerID)
 
-          // create new dinner application
-          axios.post('https://dukeconvo.herokuapp.com/application/register', {
-            interest: this.state.interest,
-            studentID: this.state.netID,
-            dinnerID: this.state.dinnerID
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+          this.formSubmit(this.state.interest, this.state.netID, this.state.dinnerID);
         },
         // an error is returned
         error => {
           console.error(error);
         }
-      )
-      this.setState({ dinnerID: -1, appSuccess: true});
+      );
+
     }
   }
 
@@ -208,6 +220,10 @@ class DinnerCard extends React.Component {
 
       <Card className={classes.card}>
         <CardHeader
+          classes={{
+            title: classes.title,
+            subheader: classes.subheader,
+          }}
           avatar={
             <LocalDining/>
           }
