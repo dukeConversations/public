@@ -75,7 +75,7 @@ class Faq extends React.Component {
 
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography style={{fontFamily: 'Patrick Hand SC'}}>Cancellation</Typography>
+            <Typography style={{fontFamily: 'Overpass'}}>Cancellation</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>

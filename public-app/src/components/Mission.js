@@ -3,13 +3,11 @@ import Typography from '@material-ui/core/Typography';
 import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-import mali from 'typeface-mali';
-
 const styles = theme => ({
   body: {
     lineHeight: '2.5em',
     marginBottom: '20px',
-    fontFamily: 'Neucha'
+    fontFamily: 'Overpass'
   }
 });
 

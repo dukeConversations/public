@@ -170,9 +170,9 @@ class PersistentDrawerLeft extends React.Component {
           <div className={classes.drawerHeader} />
           {this.state.value === 0 && <Home marginTop={''}/>}
           {this.state.value === 1 && <Dinners mobile={this.props.mobile} marginTop={''}/>}
-          {this.state.value === 2 && <Mission marginTop={''} width={'97%'} fontSize={'1.3em'}/>}
+          {this.state.value === 2 && <Mission marginTop={''} width={'97%'} fontSize={'1.2em'}/>}
           {this.state.value === 3 && <Team marginTop={''}/>}
-          {this.state.value === 4 && <Contact marginTop={''} width={'72%'}/>}
+          {this.state.value === 4 && <Contact marginTop={''} width={'97%'} fontSize={'1.2em'}/>}
           {this.state.value === 5 && <Faq marginTop={''} width={'95%'}/>}
         </main>
       </div>

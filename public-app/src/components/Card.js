@@ -43,7 +43,7 @@ const styles = theme => ({
   },
   title: {
     fontSize: '1.5em',
-    fontFamily: 'Alegreya Sans SC',
+    fontFamily: 'Overpass',
     fontWeight: 'bold'
   },
   subheader: {
@@ -51,9 +51,15 @@ const styles = theme => ({
     fontSize: '1.2em',
   },
   profName: {
-    fontSize: '1.1em'
+    fontSize: '1.1em',
+    fontFamily: 'Overpass'
   },
   profTitle: {
+    fontFamily: 'Overpass',
+    fontSize: '1em'
+  },
+  description: {
+    fontFamily: 'Overpass',
     fontSize: '1em'
   },
   media: {
@@ -283,7 +289,7 @@ class DinnerCard extends React.Component {
 
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>
+            <Typography paragraph className={classes.description}>
               {this.props.description}
             </Typography>
           </CardContent>
