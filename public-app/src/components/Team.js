@@ -10,7 +10,7 @@ class Team extends React.Component {
 
     return (
       <div style={{marginTop: this.props.marginTop}}>
-        <h2 style={{textAlign: 'center'}}>Team</h2>
+        <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>Team</h2>
       </div>
     )
   }

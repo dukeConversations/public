@@ -40,7 +40,7 @@ class Dinners extends React.Component {
 
     return (
       <div style={{marginTop: this.props.marginTop}}>
-        <h2 style={{textAlign: 'center'}}>Upcoming dinners</h2>
+        <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>Upcoming dinners</h2>
         {this.state.dinners.map(function(dinner, idx){
 
           var timestamp = new Date(dinner.timeStamp);
@@ -67,7 +67,6 @@ class Dinners extends React.Component {
                 </Grid>
               </Grid>
               </div>
-
             )
 
         }, this)}

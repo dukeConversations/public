@@ -62,17 +62,20 @@ class Faq extends React.Component {
   render() {
     const { expanded } = this.state;
     return (
-      <div style={{margin: '0 auto', marginTop: this.props.marginTop, maxWidth: '90%'}}>
-        <h2 style={{textAlign: 'center'}}>FAQ and Policies</h2>
+      <div style={{margin: '0 auto', marginTop: this.props.marginTop, width: this.props.width}}>
+        <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>FAQ and Policies</h2>
 
         <h3>Policies</h3>
+
+        <div>
         <ExpansionPanel
           square
           expanded={expanded === 'panel1'}
           onChange={this.handleChange('panel1')}
+
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>Cancellation</Typography>
+            <Typography style={{fontFamily: 'Patrick Hand SC'}}>Cancellation</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography>
@@ -109,6 +112,7 @@ class Faq extends React.Component {
           </ExpansionPanelDetails>
         </ExpansionPanel>
 
+        </div>
         <h3>FAQ</h3>
         <ExpansionPanel
           square

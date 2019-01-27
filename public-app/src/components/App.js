@@ -78,10 +78,10 @@ class App extends Component {
     </AppBar>
       {value === 0 && <Home marginTop={50}/>}
       {value === 1 && <Dinners mobile={false} marginTop={50}/>}
-      {value === 2 && <Mission marginTop={50}/>}
+      {value === 2 && <Mission marginTop={50} width={'75%'} fontSize={'1.5em'}/>}
       {value === 3 && <Team marginTop={50}/>}
-      {value === 4 && <Contact marginTop={50}/>}
-      {value === 5 && <Faq marginTop={50}/>}
+      {value === 4 && <Contact marginTop={50} width={'72%'}/>}
+      {value === 5 && <Faq marginTop={50} width={'75%'}/>}
     </div>
 
   </Router>

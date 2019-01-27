@@ -42,7 +42,9 @@ const styles = theme => ({
     maxWidth: 800,
   },
   title: {
-    fontSize: '1.5em'
+    fontSize: '1.5em',
+    fontFamily: 'Alegreya Sans SC',
+    fontWeight: 'bold'
   },
   subheader: {
     fontWeight: 'bold',
@@ -294,7 +296,7 @@ class DinnerCard extends React.Component {
         onClose={this.handleClose}
         aria-labelledby={this.props.id}
         fullScreen={this.props.mobile}
-        
+
         maxWidth={'sm'}
       >
         <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>
