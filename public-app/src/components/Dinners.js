@@ -26,6 +26,9 @@ class Dinners extends React.Component {
 
   render() {
 
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     if (this.state.dinners.length === 0) {
       return (
         <div style={{textAlign: 'center', marginTop: this.props.marginTop}}>
@@ -41,15 +44,18 @@ class Dinners extends React.Component {
         {this.state.dinners.map(function(dinner, idx){
 
           var timestamp = new Date(dinner.timeStamp);
+          var day = days[timestamp.getDay()];
+          var date = timestamp.getDate();
+          var month = months[timestamp.getMonth()];
 
-          var date = String(timestamp.getDay()) + ", " + timestamp.getDate() + " " + timestamp.getMonth() + " " + timestamp.getYear();
-
+          var date = day + ", " + date + " " + month;
 
             return (
               <div style={{maxWidth: 800, margin: '0 auto'}}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
                   <Card
+                  mobile={this.props.mobile}
                   id={dinner.id}
                   firstName={dinner.professor.firstName}
                   lastName={dinner.professor.lastName}

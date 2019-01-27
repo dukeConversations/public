@@ -26,6 +26,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
+import withMobileDialog from '@material-ui/core/withMobileDialog';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Grid from '@material-ui/core/Grid';
@@ -45,7 +46,13 @@ const styles = theme => ({
   },
   subheader: {
     fontWeight: 'bold',
-    fontSize: '1.3em'
+    fontSize: '1.2em',
+  },
+  profName: {
+    fontSize: '1.1em'
+  },
+  profTitle: {
+    fontSize: '1em'
   },
   media: {
     height: 0,
@@ -54,7 +61,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 250,
+    width: '45%',
   },
   interestField: {
     marginLeft: theme.spacing.unit,
@@ -248,16 +255,16 @@ class DinnerCard extends React.Component {
             </Grid>
             <Grid item xs={8} sm container>
             <CardContent style={{paddingTop: 0, paddingBottom: 0}}>
-              <Typography variant="subtitle2" style={{fontWeight: 'bold'}} >
+              <Typography className={classes.profName} variant="subtitle2" style={{fontWeight: 'bold'}} >
                 {this.props.firstName} {this.props.lastName}
               </Typography>
-              <Typography>
+              <Typography className={classes.profTitle}>
                 {this.props.title}
               </Typography>
 
               <Button
               style={{marginLeft: -13}}
-              size="small"
+              size="big"
               onClick={this.handleExpandClick}
               aria-expanded={this.state.expanded}
               aria-label="Show more">
@@ -286,7 +293,8 @@ class DinnerCard extends React.Component {
         scroll="body"
         onClose={this.handleClose}
         aria-labelledby={this.props.id}
-        fullWidth={true}
+        fullScreen={this.props.mobile}
+        
         maxWidth={'sm'}
       >
         <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>

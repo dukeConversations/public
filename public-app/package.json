@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "duke-convos-api": "^1.1.6",
     "js-cookie": "^2.2.0",
+    "moment": "^2.23.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^5.1.1",

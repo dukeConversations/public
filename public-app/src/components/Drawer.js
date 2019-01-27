@@ -110,7 +110,7 @@ class PersistentDrawerLeft extends React.Component {
   render() {
     const { classes, theme } = this.props;
 
-    const menu = ['Home', 'Dinners', 'Mission', 'Team', 'Contact', 'FAQ', 'Topics'];
+    const menu = ['Home', 'Dinners', 'Mission', 'Team', 'Contact', 'FAQ'];
 
     return (
       <div className={classes.root}>
@@ -169,12 +169,11 @@ class PersistentDrawerLeft extends React.Component {
         >
           <div className={classes.drawerHeader} />
           {this.state.value === 0 && <Home marginTop={''}/>}
-          {this.state.value === 1 && <Dinners marginTop={''}/>}
+          {this.state.value === 1 && <Dinners mobile={this.props.mobile} marginTop={''}/>}
           {this.state.value === 2 && <Mission marginTop={''}/>}
           {this.state.value === 3 && <Team marginTop={''}/>}
           {this.state.value === 4 && <Contact marginTop={''}/>}
           {this.state.value === 5 && <Faq marginTop={''}/>}
-          {this.state.value === 6 && <Topics marginTop={''}/>}
         </main>
       </div>
     );

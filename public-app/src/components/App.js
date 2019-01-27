@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-import Drawer from './Drawer.js'
+import Drawer from './Drawer.js';
 
 import '../App.css';
 
@@ -29,13 +29,13 @@ const mapDispatchToProps = dispatch => ({
  simpleAction: () => dispatch(simpleAction())
 })
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+// function TabContainer(props) {
+//   return (
+//     <Typography component="div" style={{ padding: 8 * 3 }}>
+//       {props.children}
+//     </Typography>
+//   );
+// }
 
 function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
@@ -59,10 +59,8 @@ class App extends Component {
 
   const { value } = this.state;
 
-  console.log(isMobileDevice());
-
   if (isMobileDevice()) {
-    return (<Drawer/>)
+    return (<Drawer mobile={true} />)
   }
 
   else return (
@@ -70,22 +68,20 @@ class App extends Component {
     <div style={{height: '100%', width: '100%', margin: '0 auto'}}>
     <AppBar position="fixed" style={{backgroundColor: '#001A57', color: '#0c9bf9'}}>
       <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
-        <Tab label="Home" href="/"/>
+        <Tab label="Home"/>
         <Tab label="Dinners"/>
         <Tab label="Mission"/>
         <Tab label="Our Team"/>
         <Tab label="Contact Us"/>
         <Tab label="FAQ and Policies"/>
-        <Tab label="Topics"/>
       </Tabs>
     </AppBar>
-      {value === 0 && <TabContainer></TabContainer>}
-      {value === 1 && <TabContainer><Dinners marginTop={50}/></TabContainer>}
-      {value === 2 && <TabContainer><Mission marginTop={50}/></TabContainer>}
-      {value === 3 && <TabContainer><Team marginTop={50}/></TabContainer>}
-      {value === 4 && <TabContainer><Contact marginTop={50}/></TabContainer>}
-      {value === 5 && <TabContainer><Faq marginTop={50}/></TabContainer>}
-      {value === 6 && <TabContainer><Topics marginTop={50}/></TabContainer>}
+      {value === 0 && <Home marginTop={50}/>}
+      {value === 1 && <Dinners mobile={false} marginTop={50}/>}
+      {value === 2 && <Mission marginTop={50}/>}
+      {value === 3 && <Team marginTop={50}/>}
+      {value === 4 && <Contact marginTop={50}/>}
+      {value === 5 && <Faq marginTop={50}/>}
     </div>
 
   </Router>
