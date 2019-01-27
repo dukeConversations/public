@@ -48,6 +48,7 @@ const styles = theme => ({
   menuButton: {
     marginLeft: 12,
     marginRight: 20,
+    fontFamily: 'Overpass'
   },
   hide: {
     display: 'none',
@@ -55,6 +56,7 @@ const styles = theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    fontFamily: 'Overpass'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -65,6 +67,7 @@ const styles = theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    fontFamily: 'Overpass'
   },
   content: {
     flexGrow: 1,
@@ -82,6 +85,9 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  tab: {
+    fontFamily: 'Overpass'
+  }
 });
 
 class PersistentDrawerLeft extends React.Component {
@@ -152,12 +158,11 @@ class PersistentDrawerLeft extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
+          <List style={{fontFamily: 'Overpass'}}>
 
             {menu.map((text, index) => (
-              <ListItem selected={this.state.value === index} button key={text} onClick={this.handleChange(index)}>
-
-                <ListItemText primary={text} />
+              <ListItem style={{fontFamily: 'Overpass'}} selected={this.state.value === index} button key={text} onClick={this.handleChange(index)}>
+                <ListItemText primary={text} style={{fontFamily: 'Overpass'}} className={classes.tab}/>
               </ListItem>
             ))}
           </List>
