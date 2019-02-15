@@ -120,6 +120,7 @@ class DinnerCard extends React.Component {
       // create new dinner application
       axios.post('https://dukeconvo.herokuapp.com/application/register', {
         interest: interest,
+        /*diet: diet,*/
         studentID: netID,
         dinnerID: dinnerID
       })
@@ -196,7 +197,7 @@ class DinnerCard extends React.Component {
           console.log(this.state.netID);
           console.log("dinner id is " + this.state.dinnerID)
 
-          this.formSubmit(this.state.interest, this.state.netID, this.state.dinnerID);
+          this.formSubmit(this.state.interest, this.state.netID, this.state.dinnerID, this.state.diet);
         },
         // an error is returned
         error => {
@@ -217,208 +218,204 @@ class DinnerCard extends React.Component {
     return (
       <div>
 
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={this.state.appSuccess}
-        autoHideDuration={6000}
-        onClose={this.handleClose}
-      >
-        <MySnackbarContentWrapper
-          onClose={this.handleClose}
-          variant="success"
-          message="Application submitted!"
-        />
-      </Snackbar>
-
-      <Card className={classes.card}>
-        <CardHeader
-          classes={{
-            title: classes.title,
-            subheader: classes.subheader,
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
           }}
-          avatar={
-            <LocalDining/>
-          }
-          action={
-            <Button onClick={this.handleClickOpen(this.props.id)} size="small" variant="contained">
-              <NoteAdd style={{marginRight: 5}}/>
-              Apply
-            </Button>
-          }
-          title={this.props.topic}
-          subheader={this.props.timeStamp}
-        />
-        <CardContent style={{paddingTop: 0}}>
-          <Grid container spacing={12}>
-            <Grid item xs={4}>
-              <CardMedia
-                className={classes.media}
-                image="http://i.imgur.com/w5rkSIj.jpg"
-                title={this.props.firstName}
-                style={{marginBottom: 5}}
-              />
-            </Grid>
-            <Grid item xs={8} sm container>
-            <CardContent style={{paddingTop: 0, paddingBottom: 0}}>
-              <Typography className={classes.profName} variant="subtitle2" style={{fontWeight: 'bold'}} >
-                {this.props.firstName} {this.props.lastName}
-              </Typography>
-              <Typography className={classes.profTitle}>
-                {this.props.title}
-              </Typography>
+          open={this.state.appSuccess}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <MySnackbarContentWrapper
+            onClose={this.handleClose}
+            variant="success"
+            message="Application submitted!"
+          />
+        </Snackbar>
 
-              <Button
-              style={{marginLeft: -13}}
-              size="big"
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more">
-                <ExpandMoreIcon className={classnames(classes.expand, {
-                  [classes.expandOpen]: this.state.expanded,
-                })} style={{paddingLeft: -10, marginRight: 2}}/>
-                Learn More
+        <Card className={classes.card}>
+          <CardHeader
+            classes={{
+              title: classes.title,
+              subheader: classes.subheader,
+            }}
+            avatar={
+              <LocalDining/>
+            }
+            action={
+              <Button onClick={this.handleClickOpen(this.props.id)} size="small" variant="contained">
+                <NoteAdd style={{marginRight: 5}}/>
+                Apply
               </Button>
+            }
+            title={this.props.topic}
+            subheader={this.props.timeStamp}
+          />
+          {this.props.timeStamp}
+          <CardContent style={{paddingTop: 0}}>
+            <Grid container spacing={12}>
 
-            </CardContent>
+              <Grid item xs={8} sm container>
+                <CardContent style={{paddingTop: 0, paddingBottom: 0}}>
+                  <Typography className={classes.profName} variant="subtitle2" style={{fontWeight: 'bold'}} >
+                    {this.props.firstName} {this.props.lastName}
+                  </Typography>
+                  <Typography className={classes.profTitle}>
+                    {this.props.title}
+                  </Typography>
+
+                  <Button
+                    style={{marginLeft: -13}}
+                    size="big"
+                    onClick={this.handleExpandClick}
+                    aria-expanded={this.state.expanded}
+                  aria-label="Show more">
+                    <ExpandMoreIcon className={classnames(classes.expand, {
+                      [classes.expandOpen]: this.state.expanded,
+                    })} style={{paddingLeft: -10, marginRight: 2}}/>
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
-
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph className={classes.description}>
-              {this.props.description}
-            </Typography>
           </CardContent>
-        </Collapse>
-      </Card>
 
-      <Dialog
-        open={value === this.props.id}
-        scroll="body"
-        onClose={this.handleClose}
-        aria-labelledby={this.props.id}
-        fullScreen={this.props.mobile}
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph className={classes.description}>
+                {this.props.description}
+              </Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
 
-        maxWidth={'sm'}
-      >
-        <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="firstName"
-            label="First Name"
-            className={classes.textField}
-            required
-            error={this.state.errorfirstName}
-            onChange={this.handleChange('firstName')}
-          />
-          <TextField
-            margin="dense"
-            id="lastName"
-            label="Last Name"
-            className={classes.textField}
-            required
-            error={this.state.errorlastName}
-            onChange={this.handleChange('lastName')}
-          />
-          <TextField
-            margin="dense"
-            id="netID"
-            label="NetID"
-            className={classes.textField}
-            required
-            error={this.state.errornetID}
-            onChange={this.handleChange('netID')}
-          />
-          <TextField
-            margin="dense"
-            id="uniqueID"
-            label="UniqueID"
-            className={classes.textField}
-            required
-            error={this.state.erroruniqueID}
-            onChange={this.handleChange('uniqueID')}
-          />
+        <Dialog
+          open={value === this.props.id}
+          scroll="body"
+          onClose={this.handleClose}
+          aria-labelledby={this.props.id}
+          fullScreen={this.props.mobile}
 
-          <TextField
-            id="major"
-            select
-            label="Major"
-            className={classes.textField}
-            value={this.state.major}
-            onChange={this.handleChange('major')}
-            required
-            error={this.state.errormajor}
-            margin="dense"
-          >
-          <MenuItem value="0">
-            <em>None</em>
-          </MenuItem>
-          {majors.map(function(major,idx) {
-          if (idx > 0) return (<MenuItem key={idx} value={idx}>{major}</MenuItem>) })}
-          </TextField>
+          maxWidth={'sm'}
+        >
+          <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="firstName"
+              label="First Name"
+              className={classes.textField}
+              required
+              error={this.state.errorfirstName}
+              onChange={this.handleChange('firstName')}
+            />
+            <TextField
+              margin="dense"
+              id="lastName"
+              label="Last Name"
+              className={classes.textField}
+              required
+              error={this.state.errorlastName}
+              onChange={this.handleChange('lastName')}
+            />
+            <TextField
+              margin="dense"
+              id="netID"
+              label="NetID"
+              className={classes.textField}
+              required
+              error={this.state.errornetID}
+              onChange={this.handleChange('netID')}
+            />
+            <TextField
+              margin="dense"
+              id="uniqueID"
+              label="UniqueID"
+              className={classes.textField}
+              required
+              error={this.state.erroruniqueID}
+              onChange={this.handleChange('uniqueID')}
+            />
 
-          <TextField
-            margin="dense"
-            id="phoneNumber"
-            label="Phone Number"
-            className={classes.textField}
-            onChange={this.handleChange('phoneNumber')}
-            type="number"
-          />
+            <TextField
+              id="major"
+              select
+              multiline
+              label="Major"
+              className={classes.textField}
+              value={this.state.major}
+              onChange={this.handleChange('major')}
+              required
+              error={this.state.errormajor}
+              margin="normal"
+            >
+              <MenuItem value="0">
+                <em>None</em>
+              </MenuItem>
+              {majors.map(function(major,idx) {
+                if (idx > 0) return (<MenuItem key={idx} value={idx}>{major}</MenuItem>) })}
+            </TextField>
 
-          <TextField
-            id="graduationYear"
-            select
-            label="Graduation Year"
-            className={classes.textField}
-            onChange={this.handleChange('graduationYear')}
-            required
-            value={this.state.graduationYear}
-            error={this.state.errorgraduationYear}
-            margin="dense"
-          >
-          <MenuItem value="0">
-            <em>None</em>
-          </MenuItem>
-          {graduationYears.map(function(gy,idx) {
-          if (idx > 0) return (<MenuItem key={idx} value={idx}>{gy}</MenuItem>) })}
-          </TextField>
+            <TextField
+              margin="dense"
+              id="phoneNumber"
+              label="Phone Number"
+              className={classes.textField}
+              onChange={this.handleChange('phoneNumber')}
+              type="number"
+            />
 
-          <TextField
-            id="genderPronouns"
-            select
-            label="Gender Pronouns"
-            className={classes.textField}
-            onChange={this.handleChange('genderPronouns')}
-            required
-            value={this.state.genderPronouns}
-            error={this.state.errorgenderPronouns}
-            margin="dense"
-          >
-          <MenuItem value="0">
-            <em>None</em>
-          </MenuItem>
-          {genders.map(function(gp,idx) {
-          if (idx > 0) return (<MenuItem key={idx} value={idx}>{gp}</MenuItem>) })}
-          </TextField>
+            <TextField
+              id="graduationYear"
+              select
+              multiline
+              label="Graduation Year"
+              className={classes.textField}
+              onChange={this.handleChange('graduationYear')}
+              required
+              value={this.state.graduationYear}
+              error={this.state.errorgraduationYear}
+              margin="dense"
+            >
+              <MenuItem value="0">
+                <em>None</em>
+              </MenuItem>
+              {graduationYears.map(function(gy,idx) {
+                if (idx >= 0) return (<MenuItem key={idx} value={gy}>{gy}</MenuItem>) })}
+            </TextField>
 
-          <TextField
-            multiline
-            variant="outlined"
-            margin="dense"
-            id="interest"
-            label="Why do you want to attend this dinner?"
-            className={classes.interestField}
+            <TextField
+              id="genderPronouns"
+              select
+              multiline
+              label="Gender Pronouns"
+              className={classes.textField}
+              onChange={this.handleChange('genderPronouns')}
+              required
+              value={this.state.genderPronouns}
+              error={this.state.errorgenderPronouns}
+              margin="dense"
+            >
+              <MenuItem value="0">
+                <em>None</em>
+              </MenuItem>
+              {genders.map(function(gp,idx) {
+                if (idx > 0) return (<MenuItem key={idx} value={idx}>{gp}</MenuItem>) })}
+            </TextField>
 
-            required
-            error={this.state.errorinterest}
-            onChange={this.handleChange('interest')}
+            <TextField
+              multiline
+              variant="outlined"
+              margin="dense"
+              id="interest"
+              label="Why do you want to attend this dinner?"
+              className={classes.interestField}
+
+              required
+              error={this.state.errorinterest}
+              onChange={this.handleChange('interest')}
           />
         </DialogContent>
         <DialogActions>

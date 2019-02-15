@@ -40,8 +40,9 @@ class Dinners extends React.Component {
 
     return (
       <div style={{marginTop: this.props.marginTop}}>
-        <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>Upcoming dinners</h2>
-        {this.state.dinners.map(function(dinner, idx){
+        <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>Dinners Coming Soon!</h2>
+
+        {/*{this.state.dinners.map(function(dinner, idx){
 
           var timestamp = new Date(dinner.timeStamp);
           var day = days[timestamp.getDay()];
@@ -50,26 +51,26 @@ class Dinners extends React.Component {
 
           var date = day + ", " + date + " " + month;
 
-            return (
-              <div style={{maxWidth: 800, margin: '0 auto'}}>
-              <Grid container spacing={24}>
-                <Grid item xs={12}>
-                  <Card
-                  mobile={this.props.mobile}
-                  id={dinner.id}
-                  firstName={dinner.professor.firstName}
-                  lastName={dinner.professor.lastName}
-                  title={dinner.professor.title}
-                  picture={'http://i.imgur.com/w5rkSIj.jpg'}
-                  topic={dinner.topic}
-                  description={dinner.description}
-                  timeStamp={date}/>
-                </Grid>
-              </Grid>
-              </div>
-            )
+          return (
+            <div style={{maxWidth: 800, margin: '0 auto'}}>
+          <Grid container spacing={24}>
+          <Grid item xs={12}>
+          <Card
+          mobile={this.props.mobile}
+          id={dinner.id}
+          firstName={dinner.professor.firstName}
+          lastName={dinner.professor.lastName}
+          title={dinner.professor.title}
+          picture={'http://i.imgur.com/w5rkSIj.jpg'}
+          topic={dinner.topic}
+          description={dinner.description}
+          timeStamp={date}/>
+          </Grid>
+          </Grid>
+            </div>
+          )
 
-        }, this)}
+        }, this)}*/}
 
       </div>
     )
