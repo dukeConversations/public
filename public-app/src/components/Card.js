@@ -120,7 +120,6 @@ class DinnerCard extends React.Component {
       // create new dinner application
       axios.post('https://dukeconvo.herokuapp.com/application/register', {
         interest: interest,
-        /*diet: diet,*/
         studentID: netID,
         dinnerID: dinnerID
       })

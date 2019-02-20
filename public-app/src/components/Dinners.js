@@ -50,7 +50,7 @@ class Dinners extends React.Component {
           var date = timestamp.getDate();
           var month = months[timestamp.getMonth()];
 
-          var date = day + ", " + date + " " + month;
+          var date = day + ", " + month + " " + date;
 
           return (
             <div style={{maxWidth: 800, margin: '0 auto'}}>
