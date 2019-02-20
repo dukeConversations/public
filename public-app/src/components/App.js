@@ -57,23 +57,25 @@ class App extends Component {
 
   else return (
    <Router>
-    <div style={{height: '100%', width: '100%', margin: '0 auto'}}>
-    <AppBar position="fixed" style={{backgroundColor: '#001A57', color: '#0c9bf9'}}>
-      <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
-        <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Home"/>
-        <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Dinners"/>
-        <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Mission"/>
-        <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Our Team"/>
-        <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Contact Us"/>
-        <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="FAQ and Policies"/>
-      </Tabs>
-    </AppBar>
-      {value === 0 && <Home marginTop={50}/>}
-      {value === 1 && <Dinners mobile={false} marginTop={50}/>}
-      {value === 2 && <Mission marginTop={50} width={'75%'} fontSize={'1.4em'}/>}
-      {value === 3 && <Team marginTop={50}/>}
-      {value === 4 && <Contact marginTop={50} width={'72%'} fontSize={'1.4em'}/>}
-      {value === 5 && <Faq marginTop={50} width={'75%'}/>}
+     <div style={{height: '100%', width: '100%', margin: '0 auto'}}>
+       <AppBar position="fixed" style={{backgroundColor: '#001A57', color: '#0c9bf9'}}>
+         <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
+           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Home"/>
+           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Dinners"/>
+           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Mission"/>
+           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Contact Us"/>
+           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="FAQ and Policies"/>
+           {/*<Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Our Team"/>*/}
+
+         </Tabs>
+       </AppBar>
+       {value === 0 && <Home marginTop={50}/>}
+       {value === 1 && <Dinners mobile={false} marginTop={50}/>}
+       {value === 2 && <Mission marginTop={50} width={'75%'} fontSize={'1.4em'}/>}
+       {value === 3 && <Contact marginTop={50} width={'72%'} fontSize={'1.4em'}/>}
+       {value === 4 && <Faq marginTop={50} width={'75%'}/>}
+       {value === 5 && <Team marginTop={50}/>}
+
     </div>
 
   </Router>

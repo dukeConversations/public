@@ -252,7 +252,6 @@ class DinnerCard extends React.Component {
             title={this.props.topic}
             subheader={this.props.timeStamp}
           />
-          {this.props.timeStamp}
           <CardContent style={{paddingTop: 0}}>
             <Grid container spacing={12}>
 
@@ -349,7 +348,8 @@ class DinnerCard extends React.Component {
               onChange={this.handleChange('major')}
               required
               error={this.state.errormajor}
-              margin="normal"
+              margin="dense"
+              InputLabelProps={this.state.majorShrink?{shrink:true}:{}}
             >
               <MenuItem value="0">
                 <em>None</em>

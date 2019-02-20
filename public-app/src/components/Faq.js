@@ -5,6 +5,7 @@ import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Footer from './Footer.js';
 
 const ExpansionPanel = withStyles({
   root: {
@@ -85,49 +86,49 @@ class Faq extends React.Component {
 
         <Typography variant="h6" className={classes.heading}>Policies</Typography>
         <div>
-        <ExpansionPanel
-          square
-          expanded={expanded === 'panel1'}
-          onChange={this.handleChange('panel1')}
+          <ExpansionPanel
+            square
+            expanded={expanded === 'panel1'}
+            onChange={this.handleChange('panel1')}
 
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.category}>Cancellation</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography className={classes.body}>
-              If you sign up for, and are accepted to a dinner, but are unable to attend, you must give the Duke Conversations Executive member responsible for your dinner notice at least <b>1 DAY IN ADVANCE</b>. Otherwise, you will be prohibited from attending any Duke Conversations event for the remainder of the semester. ​
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel
-          square
-          expanded={expanded === 'panel2'}
-          onChange={this.handleChange('panel2')}
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.category}>Transportation</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography className={classes.body}>
-              Transportation provided to the dinner will depart the Science Center Circle no later than 15 minutes before the starting time of the event itself. If you are late, you will be responsible for your own transportation.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel
-          square
-          expanded={expanded === 'panel3'}
-          onChange={this.handleChange('panel3')}
-        >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.category}>Code of Conduct</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography className={classes.body}>
-              Participating in a Duke Conversations event is a privilege afforded to Duke students by the generosity of Duke professor's and by the Office of Undergraduate Education. Participants must not only be respectful to the Professors themselves, but also to each other and each other's perspectives.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+          >
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.category}>Cancellation</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography className={classes.body}>
+                If you sign up for, and are accepted to a dinner, but are unable to attend, you must give the Duke Conversations Executive member responsible for your dinner notice at least <b>1 DAY IN ADVANCE</b>. Otherwise, you will be prohibited from attending any Duke Conversations event for the remainder of the semester. ​
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel
+            square
+            expanded={expanded === 'panel2'}
+            onChange={this.handleChange('panel2')}
+          >
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.category}>Transportation</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography className={classes.body}>
+                Transportation provided to the dinner will depart the Science Center Circle no later than 15 minutes before the starting time of the event itself. If you are late, you will be responsible for your own transportation.
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel
+            square
+            expanded={expanded === 'panel3'}
+            onChange={this.handleChange('panel3')}
+          >
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.category}>Code of Conduct</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography className={classes.body}>
+                Participating in a Duke Conversations event is a privilege afforded to Duke students by the generosity of Duke professor's and by the Office of Undergraduate Education. Participants must not only be respectful to the Professors themselves, but also to each other and each other's perspectives.
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
 
         </div>
 
@@ -138,7 +139,7 @@ class Faq extends React.Component {
           onChange={this.handleChange('panel4')}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.category}>When will I be notified if I have been accepted to attend a dinner?</Typography>
+            <Typography className={classes.category}>When will I be notified if I have been accepted to attend a dinner?</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
@@ -152,7 +153,7 @@ class Faq extends React.Component {
           onChange={this.handleChange('panel5')}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.category}>How do I know if I was accepted to attend a dinner that I signed up for?</Typography>
+            <Typography className={classes.category}>How do I know if I was accepted to attend a dinner that I signed up for?</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
@@ -166,7 +167,7 @@ class Faq extends React.Component {
           onChange={this.handleChange('panel6')}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.category}>How do I get off the waitlist for a dinner?</Typography>
+            <Typography className={classes.category}>How do I get off the waitlist for a dinner?</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
@@ -180,7 +181,7 @@ class Faq extends React.Component {
           onChange={this.handleChange('panel7')}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.category}>What is the selection process like for a dinner?</Typography>
+            <Typography className={classes.category}>What is the selection process like for a dinner?</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
@@ -188,6 +189,7 @@ class Faq extends React.Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
+        <Footer/>
 
       </div>
     );
