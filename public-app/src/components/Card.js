@@ -95,7 +95,7 @@ class DinnerCard extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {expanded: false, value: -1, appSuccess: false};
+    this.state = {expanded: false, value: -1, appSuccess: false, majorShrink: false, graduationYearShrink: false, genderPronounsShrink: false};
     this.handleExpandClick = this.handleExpandClick.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -150,6 +150,8 @@ class DinnerCard extends React.Component {
   handleChange = name => event => {
 
     var errorVar = "error" + name;
+    var varShrink = name + "Shrink";
+    console.log(varShrink)
 
     if (event.target.value.toString().trim() === '') {
       this.setState({
@@ -164,6 +166,7 @@ class DinnerCard extends React.Component {
 
     this.setState({
       [name]: event.target.value,
+      [varShrink]: true
     });
   };
 
@@ -244,8 +247,8 @@ class DinnerCard extends React.Component {
               <LocalDining/>
             }
             action={
-              <Button onClick={this.handleClickOpen(this.props.id)} size="small" variant="contained">
-                <NoteAdd style={{marginRight: 5}}/>
+              <Button onClick={this.handleClickOpen(this.props.id)} color="primary" size="small" variant="contained">
+                <NoteAdd style={{marginRight: 5,}}/>
                 Apply
               </Button>
             }
@@ -309,6 +312,8 @@ class DinnerCard extends React.Component {
               required
               error={this.state.errorfirstName}
               onChange={this.handleChange('firstName')}
+              value={this.state.firstName}
+
             />
             <TextField
               margin="dense"
@@ -318,6 +323,8 @@ class DinnerCard extends React.Component {
               required
               error={this.state.errorlastName}
               onChange={this.handleChange('lastName')}
+              value={this.state.lastName}
+
             />
             <TextField
               margin="dense"
@@ -327,6 +334,8 @@ class DinnerCard extends React.Component {
               required
               error={this.state.errornetID}
               onChange={this.handleChange('netID')}
+              value={this.state.netID}
+
             />
             <TextField
               margin="dense"
@@ -336,6 +345,8 @@ class DinnerCard extends React.Component {
               required
               error={this.state.erroruniqueID}
               onChange={this.handleChange('uniqueID')}
+              value={this.state.uniqueID}
+
             />
 
             <TextField
@@ -365,6 +376,8 @@ class DinnerCard extends React.Component {
               className={classes.textField}
               onChange={this.handleChange('phoneNumber')}
               type="number"
+              value={this.state.number}
+
             />
 
             <TextField
@@ -378,6 +391,8 @@ class DinnerCard extends React.Component {
               value={this.state.graduationYear}
               error={this.state.errorgraduationYear}
               margin="dense"
+              InputLabelProps={this.state.graduationYearShrink?{shrink:true}:{}}
+
             >
               <MenuItem value="0">
                 <em>None</em>
@@ -397,6 +412,8 @@ class DinnerCard extends React.Component {
               value={this.state.genderPronouns}
               error={this.state.errorgenderPronouns}
               margin="dense"
+              InputLabelProps={this.state.genderPronounsShrink?{shrink:true}:{}}
+
             >
               <MenuItem value="0">
                 <em>None</em>
@@ -416,15 +433,17 @@ class DinnerCard extends React.Component {
               required
               error={this.state.errorinterest}
               onChange={this.handleChange('interest')}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.handleSubmit} color="primary">
-            Proceed
-          </Button>
+              value={this.state.interest}
+
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleSubmit} color="primary">
+              Proceed
+            </Button>
         </DialogActions>
 
       </Dialog>
