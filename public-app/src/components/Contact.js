@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import classnames from 'classnames';
+import Footer from './Footer.js';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -42,7 +43,7 @@ class Contact extends React.Component {
         <Typography variant="h6" className={classes.heading}>For general inquiries</Typography>
         <Typography variant="body1" gutterBottom className={classes.body} style={{fontSize: this.props.fontSize}}>
         Send a note to Archana Ahlawat.</Typography>
-        
+        <Footer/>
       </div>
     )
   }

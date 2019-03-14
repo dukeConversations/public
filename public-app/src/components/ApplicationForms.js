@@ -91,30 +91,19 @@ const styles = theme => ({
   },
 });
 
-class DinnerCard extends React.Component {
+class ApplicationForms extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {expanded: false, value: -1, appSuccess: false, majorShrink: false, graduationYearShrink: false, genderPronounsShrink: false};
-    this.handleExpandClick = this.handleExpandClick.bind(this);
-    this.handleClickOpen = this.handleClickOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkUndefined = this.checkUndefined.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
 
-  handleClickOpen = idx => event => {
-    this.setState({ dinnerID: idx });
-  };
 
-  handleClose() {
-    this.setState({ dinnerID: -1, appSuccess: false});
-  };
 
   formSubmit(interest, netID, dinnerID, diet) {
       // create new dinner application
@@ -146,6 +135,11 @@ class DinnerCard extends React.Component {
     }
     else return false;
   }
+
+  handleClose() {
+    this.setState({ appSuccess: false});
+    this.props.history.push("/");
+  };
 
   handleChange = name => event => {
 
@@ -202,6 +196,7 @@ class DinnerCard extends React.Component {
           console.log("diet " + this.state.diet)
 
           this.formSubmit(this.state.interest, this.state.netID, this.state.dinnerID, this.state.diet);
+          this.props.history.push("/");
         },
         // an error is returned
         error => {
@@ -210,7 +205,40 @@ class DinnerCard extends React.Component {
       );
 
     }
+
   }
+
+  componentDidMount() {
+    const dinnerID = this.props.match.params.dinnerID;
+    api.getProfessors(
+      // the data is returned in professors
+      professors => {
+        this.setState({ error: null });
+        this.setState({ professors: professors });
+        console.log('profs ' + professors);
+      },
+      // an error is returned
+      error => {
+        this.setState({ error: error });
+      }
+    );
+
+    api.getDinner(
+      this.props.match.params.dinnerID,
+      // the data is returned in dinner
+      dinner => {
+        this.setState({ dinner: dinner,dinnerID: dinner.id,topic:dinner.topic,profID: dinner.professorID});
+        console.log(dinner);
+      },
+      // an error is returned
+      error => {
+        this.setState({ error: error });
+      }
+    );
+
+
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -221,87 +249,14 @@ class DinnerCard extends React.Component {
 
     return (
       <div>
-
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.appSuccess}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-        >
-          <MySnackbarContentWrapper
-            onClose={this.handleClose}
-            variant="success"
-            message="Application submitted!"
-          />
-        </Snackbar>
-
-        <Card className={classes.card}>
-          <CardHeader
-            classes={{
-              title: classes.title,
-              subheader: classes.subheader,
-            }}
-            avatar={
-              <LocalDining/>
-            }
-            action={
-              <Button onClick={this.handleClickOpen(this.props.id)} color="primary" size="small" variant="contained">
-                <NoteAdd style={{marginRight: 5,}}/>
-                Apply
-              </Button>
-            }
-            title={this.props.topic}
-            subheader={this.props.timeStamp}
-          />
-          <CardContent style={{paddingTop: 0}}>
-            <Grid container spacing={12}>
-
-              <Grid item xs={8} sm container>
-                <CardContent style={{paddingTop: 0, paddingBottom: 0}}>
-                  <Typography className={classes.profName} variant="subtitle2" style={{fontWeight: 'bold'}} >
-                    {this.props.firstName} {this.props.lastName}
-                  </Typography>
-                  <Typography className={classes.profTitle}>
-                    {this.props.title}
-                  </Typography>
-
-                  <Button
-                    style={{marginLeft: -13}}
-                    size="big"
-                    onClick={this.handleExpandClick}
-                    aria-expanded={this.state.expanded}
-                  aria-label="Show more">
-                    <ExpandMoreIcon className={classnames(classes.expand, {
-                      [classes.expandOpen]: this.state.expanded,
-                    })} style={{paddingLeft: -10, marginRight: 2}}/>
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Grid>
-            </Grid>
-          </CardContent>
-
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph className={classes.description}>
-                {this.props.description}
-              </Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
-
         <Dialog
-          open={value === this.props.id}
+          open="true"
           scroll="body"
-          onClose={this.handleClose}
           aria-labelledby={this.props.id}
-          fullScreen={this.props.mobile}
+          fullScreen="true"
           maxWidth={'sm'}
         >
-          <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>
+          <DialogTitle id={this.state.id}>Application for {this.state.topic} with {this.state.professor}</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -458,17 +413,13 @@ class DinnerCard extends React.Component {
             <Button onClick={this.handleSubmit} color="primary">
               Proceed
             </Button>
-        </DialogActions>
+          </DialogActions>
 
-      </Dialog>
+        </Dialog>
 
       </div>
     );
   }
 }
 
-DinnerCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DinnerCard);
+export default withStyles(styles)(ApplicationForms);

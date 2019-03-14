@@ -33,7 +33,7 @@ class Dinners extends React.Component {
     if (this.state.dinners.length === 0) {
       return (
         <div style={{textAlign: 'center', marginTop: this.props.marginTop}}>
-          <h2>Loading dinners</h2>
+          <h2>Loading Dinners</h2>
         <CircularProgress />
         </div>
       )
