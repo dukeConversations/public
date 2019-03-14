@@ -32,17 +32,19 @@ class Contact extends React.Component {
 
         <Typography variant="h6" className={classes.heading}>For Students</Typography>
         <Typography variant="body1" gutterBottom className={classes.body} style={{fontSize: this.props.fontSize}}>
-        To enquire about joining the Duke Conversations Executive Team: click here.</Typography>
+        To ask about joining the Duke Conversations Executive Team, please email Bo Carlson (rwc15 AT duke.edu).</Typography>
         <Typography variant="body1" gutterBottom className={classes.body} style={{fontSize: this.props.fontSize}}>
-        To recommend of a professor to host a Duke Conversations event: click here.</Typography>
+        To recommend a professor to host a Duke Conversation, email the Duke Conversations Account (duconversations AT duke.edu).</Typography>
 
-        <Typography variant="h6" className={classes.heading}>For Faculty</Typography>
+        <Typography variant="h6" className={classes.heading}>For Professors</Typography>
         <Typography variant="body1" gutterBottom className={classes.body} style={{fontSize: this.props.fontSize}}>
-        If you are interesting in hosting a dinner: please reach out to the Duke Conversations account.</Typography>
+        If you are interested in hosting a dinner, email the Duke Conversations account (duconversations AT duke.edu).</Typography>
+        <Typography variant="body1" gutterBottom className={classes.body} style={{fontSize: this.props.fontSize}}>
+        To provide feedback on a dinner that you have hosted previously, <a href="https://goo.gl/forms/S5irZBXeFlpFMB892" target={"_blank"}>click here</a>.</Typography>
 
         <Typography variant="h6" className={classes.heading}>For general inquiries</Typography>
         <Typography variant="body1" gutterBottom className={classes.body} style={{fontSize: this.props.fontSize}}>
-        Send a note to Archana Ahlawat.</Typography>
+        Send a note to Bo Carlson (rwc15 AT duke.edu).</Typography>
         <Footer/>
       </div>
     )

@@ -66,6 +66,10 @@ const styles = theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
+  disclaimer: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -99,6 +103,7 @@ class DinnerCard extends React.Component {
     this.handleExpandClick = this.handleExpandClick.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkUndefined = this.checkUndefined.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
@@ -115,6 +120,11 @@ class DinnerCard extends React.Component {
   handleClose() {
     this.setState({ dinnerID: -1, appSuccess: false});
   };
+
+  componentDidMount() {
+    var dinnerID = parseInt(window.location.pathname.split('/')[2]);
+    this.setState({dinnerID: dinnerID});
+  }
 
   formSubmit(interest, netID, dinnerID, diet) {
       // create new dinner application
@@ -215,6 +225,7 @@ class DinnerCard extends React.Component {
   render() {
     const { classes } = this.props;
     const value = this.state.dinnerID;
+    console.log(value);
     const majors = Object.values(majorsDict());
     const genders = Object.values(genderPronouns());
     const graduationYears = gradYears();
@@ -302,6 +313,11 @@ class DinnerCard extends React.Component {
           maxWidth={'sm'}
         >
           <DialogTitle id={this.props.id}>Application for {this.props.topic}</DialogTitle>
+          <DialogContent style={{paddingBottom: 0}}>
+            <Typography className={classes.disclaimer}>
+                Please note that students are not confirmed for a dinner until they have received confirmation from a Duke Conversations team member.
+              </Typography>
+          </DialogContent>
           <DialogContent>
             <TextField
               autoFocus
@@ -313,7 +329,6 @@ class DinnerCard extends React.Component {
               error={this.state.errorfirstName}
               onChange={this.handleChange('firstName')}
               value={this.state.firstName}
-
             />
             <TextField
               margin="dense"

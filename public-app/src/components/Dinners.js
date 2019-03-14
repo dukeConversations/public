@@ -45,31 +45,37 @@ class Dinners extends React.Component {
 
         {this.state.dinners.sort((a, b) => a.timeStamp - b.timeStamp).map(function(dinner, idx){
 
-          var timestamp = new Date(dinner.timeStamp * 1000);
+          var timestamp = new Date(dinner.timeStamp*1000);
           var day = days[timestamp.getDay()];
           var date = timestamp.getDate();
           var month = months[timestamp.getMonth()];
 
+          var fortnightAway = new Date(Date.now() + 12096e5);
+
           var date = day + ", " + month + " " + date;
 
-          return (
-            <div style={{maxWidth: 800, margin: '0 auto'}}>
-              <Grid container spacing={24}>
-                <Grid item xs={12}>
-                  <Card
-                    mobile={this.props.mobile}
-                    id={dinner.id}
-                    firstName={dinner.professor.firstName}
-                    lastName={dinner.professor.lastName}
-                    title={dinner.professor.title}
-                    picture={'http://i.imgur.com/w5rkSIj.jpg'}
-                    topic={dinner.topic}
-                    description={dinner.description}
-                    timeStamp={date}/>
+          // only include dinners in the next two weeks
+          if (Date.now() <= dinner.timeStamp * 1000) {
+
+            return (
+              <div style={{maxWidth: 800, margin: '0 auto'}}>
+                <Grid container spacing={24}>
+                  <Grid item xs={12}>
+                    <Card
+                      mobile={this.props.mobile}
+                      id={dinner.id}
+                      firstName={dinner.professor.firstName}
+                      lastName={dinner.professor.lastName}
+                      title={dinner.professor.title}
+                      picture={'http://i.imgur.com/w5rkSIj.jpg'}
+                      topic={dinner.topic}
+                      description={dinner.description}
+                      timeStamp={date}/>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </div>
-          )
+              </div>
+            )
+          }
 
         }, this)}
         <Footer/>

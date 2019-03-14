@@ -97,7 +97,7 @@ class Faq extends React.Component {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography className={classes.body}>
-                If you sign up for, and are accepted to a dinner, but are unable to attend, you must give the Duke Conversations Executive member responsible for your dinner notice at least <b>1 DAY IN ADVANCE</b>. Otherwise, you will be prohibited from attending any Duke Conversations event for the remainder of the semester. ​
+              If you are accepted to a dinner but are unable to attend, you must give notice at least <b>1 DAY IN ADVANCE</b> to the Duke Conversations executive member responsible for your dinner notice. Otherwise, you will be prohibited from attending any Duke Conversations event for the remainder of the semester.
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -111,7 +111,7 @@ class Faq extends React.Component {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography className={classes.body}>
-                Transportation provided to the dinner will depart the Science Center Circle no later than 15 minutes before the starting time of the event itself. If you are late, you will be responsible for your own transportation.
+              Free transportation to the dinner will depart the Science Center Circle no more than 5 minutes after the arrival time listed in your acceptance email. If you are late, you will be responsible for your own transportation.
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -125,7 +125,7 @@ class Faq extends React.Component {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography className={classes.body}>
-                Participating in a Duke Conversations event is a privilege afforded to Duke students by the generosity of Duke professor's and by the Office of Undergraduate Education. Participants must not only be respectful to the Professors themselves, but also to each other and each other's perspectives.
+              Participating in a Duke Conversations event is a privilege afforded to Duke students by the generosity of Duke professors and by the Office of Undergraduate Education. Participants must be respectful not only to the professors, but also to each other and each other’s perspectives.
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -143,7 +143,7 @@ class Faq extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
-              Acceptances will be sent out each Sunday afternoon.
+              We will generally send out acceptance notifications by Friday, the week before the dinner.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -157,7 +157,7 @@ class Faq extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
-              Each dinner has a limited number of students who can attend. If you are selected for a dinner, you will be notified . Otherwise, we unfortunately did not have enough spots at that particular event for everyone to attend and your name was placed on the waitlist.
+            Each dinner has a limited number of students who can attend. If you are selected for a dinner, you will be notified by the Friday before your dinner. Otherwise, we will notify you that you are on our waitlist.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -171,7 +171,7 @@ class Faq extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
-              If accepted participants can no longer attend a particular dinner, we will notify students on the waitlist via text message or email.
+            If an accepted participants can no longer attend a particular dinner, we will notify students on the waitlist via email.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -185,7 +185,7 @@ class Faq extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Typography className={classes.body}>
-              Duke Conversations believes that conversations are the most meaningful and engaging when participants of all years, areas of study, and personal identity are represented. Thus, in addition to ensuring that students who have not previously attended a conversation are able participate, the Duke Conversations Executive Team carefully reviews and selects students who are both different from each other and have demonstrated interest in the professor or topic.
+            Duke Conversations believes that conversations are the most meaningful and engaging when participants of all years, areas of study, and identities are represented. Thus, in addition to ensuring that students who have not previously attended a conversation are able to participate, the Duke Conversations Executive Team carefully reviews and selects students who are both different from each other and have demonstrated interest in the professor or topic.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>

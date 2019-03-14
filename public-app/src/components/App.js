@@ -20,7 +20,6 @@ import Team from './Team.js';
 import Contact from './Contact.js';
 import Faq from './Faq.js';
 import Topics from './Topics.js';
-import ApplicationForms from './ApplicationForms.js';
 
 const mapStateToProps = state => ({
  ...state
@@ -48,6 +47,17 @@ class App extends Component {
    this.props.simpleAction();
   }
 
+  componentDidMount() {
+    var pathname = window.location.pathname.split('/')[1];
+    if (pathname == "home") {this.setState({ value: 0 });}
+    if (pathname == "dinners") {this.setState({ value: 1 });}
+    if (pathname == "mission") {this.setState({ value: 2 });}
+    if (pathname == "contact") {this.setState({ value: 3 });}
+    if (pathname == "faq") {this.setState({ value: 4 });}
+    if (pathname == "team") {this.setState({ value: 5 });}
+
+  }
+
  render() {
 
   const { value } = this.state;
@@ -63,7 +73,7 @@ class App extends Component {
          <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
            <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Home" />
            <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Dinners" />
-           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Mission" />
+           <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Who We Are" />
            <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Contact Us" />
            <Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="FAQ and Policies" />
            {/*<Tab style={{fontFamily: 'Overpass', fontSize: '0.9em'}} label="Our Team"/>*/}
@@ -72,11 +82,10 @@ class App extends Component {
        </AppBar>
        {value === 0 && <Home marginTop={50}/>}
        {value === 1 && <Dinners mobile={false} marginTop={50}/>}
-       {value === 2 && <Mission marginTop={50} width={'75%'} fontSize={'1.4em'}/>}
-       {value === 3 && <Contact marginTop={50} width={'72%'} fontSize={'1.4em'}/>}
+       {value === 2 && <Mission marginTop={50} width={'75%'} fontSize={'1.2em'}/>}
+       {value === 3 && <Contact marginTop={50} width={'72%'} fontSize={'1.2em'}/>}
        {value === 4 && <Faq marginTop={50} width={'75%'}/>}
        {value === 5 && <Team marginTop={50}/>}
-       <Route path="/dinners/:dinnerID" component={ApplicationForms} />
 
      </div>
 
