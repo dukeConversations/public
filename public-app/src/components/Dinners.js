@@ -50,12 +50,17 @@ class Dinners extends React.Component {
           var date = timestamp.getDate();
           var month = months[timestamp.getMonth()];
 
-          var fortnightAway = new Date(Date.now() + 12096e5);
+          var fortnightAway = (Date.now()/1000) + 1209600;
 
           var date = day + ", " + month + " " + date;
+          console.log("Date:" + (Date.now()/1000));
+          console.log("timestamp:" + (dinner.timeStamp));
+          // <= ((dinner.timeStamp)+1209600)
 
           // only include dinners in the next two weeks
-          if (Date.now() <= dinner.timeStamp * 1000) {
+          if (((Date.now()/1000) <= (dinner.timeStamp))&&(dinner.timeStamp <= fortnightAway)) {
+
+            console.log('Inside');
 
             return (
               <div style={{maxWidth: 800, margin: '0 auto'}}>
