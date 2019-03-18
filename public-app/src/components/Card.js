@@ -122,7 +122,9 @@ class DinnerCard extends React.Component {
   };
 
   componentDidMount() {
-    var dinnerID = parseInt(window.location.pathname.split('/')[2]);
+    var dinnerID = '';
+    if (this.props.mobile) {dinnerID = parseInt(location.href.split('/')[2])}
+    else dinnerID = parseInt(window.location.pathname.split('/')[2]);
     this.setState({dinnerID: dinnerID});
   }
 
