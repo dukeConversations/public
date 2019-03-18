@@ -118,9 +118,9 @@ class PersistentDrawerLeft extends React.Component {
     if (pathname == "home") {this.setState({ value: 0 });}
     if (pathname == "dinners") {this.setState({ value: 1 });}
     if (pathname == "mission") {this.setState({ value: 2 });}
-    if (pathname == "contact") {this.setState({ value: 3 });}
-    if (pathname == "faq") {this.setState({ value: 4 });}
-    if (pathname == "team") {this.setState({ value: 5 });}
+    if (pathname == "contact") {this.setState({ value: 4 });}
+    if (pathname == "faq") {this.setState({ value: 5 });}
+    if (pathname == "team") {this.setState({ value: 3 });}
   }
 
   render() {

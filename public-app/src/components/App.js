@@ -48,6 +48,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(window.location.pathname.split('/')[2])
     var pathname = window.location.pathname.split('/')[1];
     if (pathname == "home") {this.setState({ value: 0 });}
     if (pathname == "dinners") {this.setState({ value: 1 });}
