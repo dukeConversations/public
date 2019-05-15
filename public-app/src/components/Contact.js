@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import classnames from 'classnames';
 import Footer from './Footer.js';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -17,10 +16,6 @@ const styles = theme => ({
 });
 
 class Contact extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 

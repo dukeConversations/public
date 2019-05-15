@@ -27,13 +27,13 @@ class Dinners extends React.Component {
 
   render() {
 
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    // var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     if (this.state.dinners.length === 0) {
       return (
         <div style={{textAlign: 'center', marginTop: this.props.marginTop}}>
-          <h2>Loading Dinners</h2>
+          <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>Loading Dinners</h2>
         <CircularProgress />
         </div>
       )
@@ -43,19 +43,14 @@ class Dinners extends React.Component {
       <div style={{marginTop: this.props.marginTop}}>
         <h2 style={{fontFamily: 'Patrick Hand SC', textAlign: 'center', fontSize: '2.3em'}}>Upcoming Dinners</h2>
 
-        {this.state.dinners.sort((a, b) => a.timeStamp - b.timeStamp).map(function(dinner, idx){
+        {this.state.dinners.sort((a, b) => a.timeStamp - b.timeStamp).forEach(function(dinner, idx){
 
           var timestamp = new Date(dinner.timeStamp*1000);
-          var day = days[timestamp.getDay()];
           var date = timestamp.getDate();
-          var month = months[timestamp.getMonth()];
-
           var fortnightAway = (Date.now()/1000) + 1209600;
 
-          var date = day + ", " + month + " " + date;
           console.log("Date:" + (Date.now()/1000));
           console.log("timestamp:" + (dinner.timeStamp));
-          // <= ((dinner.timeStamp)+1209600)
 
           // only include dinners in the next two weeks
           if (((Date.now()/1000) <= (dinner.timeStamp))&&(dinner.timeStamp <= fortnightAway)) {

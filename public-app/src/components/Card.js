@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 
 import Collapse from '@material-ui/core/Collapse';
@@ -26,7 +26,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 import DialogTitle from '@material-ui/core/DialogTitle';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Grid from '@material-ui/core/Grid';
@@ -382,7 +381,7 @@ class DinnerCard extends React.Component {
               <MenuItem value="0">
                 <em>None</em>
               </MenuItem>
-              {majors.map(function(major,idx) {
+              {majors.forEach(function(major,idx) {
                 if (idx > 0) return (<MenuItem key={idx} value={idx}>{major}</MenuItem>) })}
             </TextField>
 
@@ -414,8 +413,8 @@ class DinnerCard extends React.Component {
               <MenuItem value="0">
                 <em>None</em>
               </MenuItem>
-              {graduationYears.map(function(gy,idx) {
-                if (idx >= 0) return (<MenuItem key={idx} value={gy}>{gy}</MenuItem>) })}
+              {graduationYears.forEach(function(gy,idx) {
+                if (idx >= 0) return (<MenuItem key={idx} value={gy}>{gy}</MenuItem>)} )}
             </TextField>
 
             <TextField
@@ -435,7 +434,7 @@ class DinnerCard extends React.Component {
               <MenuItem value="0">
                 <em>None</em>
               </MenuItem>
-              {genders.map(function(gp,idx) {
+              {genders.forEach(function(gp,idx) {
                 if (idx > 0) return (<MenuItem key={idx} value={idx}>{gp}</MenuItem>) })}
             </TextField>
 

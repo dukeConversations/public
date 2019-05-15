@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Footer from './Footer.js';
-import classnames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -13,10 +12,6 @@ const styles = theme => ({
 });
 
 class Mission extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 

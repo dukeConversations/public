@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 
 import Drawer from './Drawer.js';
 
@@ -19,7 +18,6 @@ import Mission from './Mission.js';
 import Team from './Team.js';
 import Contact from './Contact.js';
 import Faq from './Faq.js';
-import Topics from './Topics.js';
 
 const mapStateToProps = state => ({
  ...state
@@ -72,12 +70,12 @@ class App extends Component {
   componentDidMount() {
     console.log(window.location.pathname.split('/')[2])
     var pathname = window.location.pathname.split('/')[1];
-    if (pathname == "home") {this.setState({ value: 0 });}
-    if (pathname == "dinners") {this.setState({ value: 1 });}
-    if (pathname == "mission") {this.setState({ value: 2 });}
-    if (pathname == "contact") {this.setState({ value: 3 });}
-    if (pathname == "faq") {this.setState({ value: 4 });}
-    if (pathname == "team") {this.setState({ value: 5 });}
+    if (pathname === "home") {this.setState({ value: 0 });}
+    if (pathname === "dinners") {this.setState({ value: 1 });}
+    if (pathname === "mission") {this.setState({ value: 2 });}
+    if (pathname === "contact") {this.setState({ value: 3 });}
+    if (pathname === "faq") {this.setState({ value: 4 });}
+    if (pathname === "team") {this.setState({ value: 5 });}
   }
 
  render() {

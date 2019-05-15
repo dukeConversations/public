@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import logo from './images/logo.jpg';
+import React from 'react';
+
 import facebook from './images/facebook.svg';
 import instagram from './images/instagram.svg';
 
@@ -15,10 +15,6 @@ const styles = theme => ({
 });
 
 class Footer extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
